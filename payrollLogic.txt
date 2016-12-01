@@ -1,0 +1,55 @@
+﻿//*****************************************************************************************************//
+//File:       payrollLogic.cs
+//Name:       Bryan Bonner
+//Email:      bonnerbryan@gmail.com
+//Course:     CPSC 223N
+//Assignment: Assignment 2 - Payroll Calculator
+//Due Date:   February 25, 2015
+//Purpose:    This program takes in information from a user and outputs net pay 
+//****************************************************************************************************//
+using System;
+using System.Drawing;
+using System.Windows.Forms;
+
+public class PayrollLogic
+{ 
+    public static double computeRegPay(double n1, double n2)
+    {
+        if (n1 <= 40)
+            return n1 * n2;
+        else
+            return 40 * n2;
+    }
+    public static double computeOtPay(double n1, double n2)
+    {
+        if (n1 <= 40)
+            return 0.00;
+        else
+            return (n1 - 40) * (1.5 * n2);
+    }
+    public static double computeSocSec(double n1)
+    {
+        if (n1 * .04 < 30)
+            return n1 * .04;
+        else
+            return 30;
+    }
+    public static double computeWithTax(double n1, double n2)
+    {
+        double taxPercent;
+        taxPercent = (20 - ((n1 + 1) * 2)) / 100;
+        return taxPercent * n2;
+    }
+    public static double computeHealth(double n1)
+    {
+       return 85 + (n1 * 54);
+    }
+    public static double computeNetPay(double n1, double n2, double n3, double n4)
+    {
+        return (n1 - n2 - n3 - n4);
+    }
+    public static string concatenateName(string n1, string n2)
+    {
+        return (n1.ToUpper() + " " + n2.ToUpper());
+    }
+} //End of PayrollLogic

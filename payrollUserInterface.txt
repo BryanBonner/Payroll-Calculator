@@ -1,0 +1,305 @@
+﻿//*****************************************************************************************************//
+//File:       payrollUserInterface.cs
+//Name:       Bryan Bonner
+//Email:      bonnerbryan@gmail.com
+//Course:     CPSC 223N
+//Assignment: Assignment 2 - Payroll Application
+//Due Date:   February 25, 2015
+//Purpose:    This program takes in information from a user and outputs net pay 
+//****************************************************************************************************//
+using System;
+using System.Drawing;
+using System.Windows.Forms;
+public class payrollUserInterface : Form
+{
+    //create variables
+    private Label title = new Label();
+    private Label firstName = new Label();
+    private Label lastName = new Label();
+    private Label hrsWorked = new Label();
+    private Label payRate = new Label();
+    private Label depend = new Label();
+    private Label healthPlan = new Label();
+    private Label name = new Label();
+    private Label regPay = new Label();
+    private Label otPay = new Label();
+    private Label grossPay = new Label();
+    private Label withTax = new Label();
+    private Label health = new Label();
+    private Label socSec = new Label();
+    private Label netPay = new Label();
+    private Label outName = new Label();
+    private Label outRegPay = new Label();
+    private Label outOtPay = new Label();
+    private Label outGrossPay = new Label();
+    private Label outWithTax = new Label();
+    private Label outHealth = new Label();
+    private Label outSocSec = new Label();
+    private Label outNetPay = new Label();
+    private TextBox inFName = new TextBox();
+    private TextBox inLName = new TextBox();
+    private TextBox inHrsWorked = new TextBox();
+    private TextBox inPayRate = new TextBox();
+    private RadioButton healthYes = new RadioButton();
+    private RadioButton healthNo = new RadioButton();
+    private ComboBox dependBox = new ComboBox();
+    private Button computePay = new Button();
+    private Button clear = new Button();
+    private Button exit = new Button();
+
+    public payrollUserInterface()
+    {
+        //initialize text strings
+        title.Text = "Bonner Enterprises Payroll";
+        firstName.Text = "First Name:";
+        lastName.Text = "Last Name:";
+        hrsWorked.Text = "Hours Worked";
+        payRate.Text = "Pay Rate";
+        depend.Text = "Dependents";
+        healthPlan.Text = "Health Plan";
+        name.Text = "Name:";
+        regPay.Text = "Regular Pay:";
+        otPay.Text = "Overtime Pay:";
+        grossPay.Text = "Gross Pay:";
+        withTax.Text = "Withhold Tax:";
+        health.Text = "Health:";
+        socSec.Text = "Social Security:";
+        netPay.Text = "Net pay:";
+        healthYes.Text = "Yes";
+        healthNo.Text = "No";
+        healthNo.Checked = true;
+        computePay.Text = "Compute Pay";
+        clear.Text = "Clear";
+        exit.Text = "Exit";
+
+        //Displays choices 0-9 in dependent dropdown box
+        string[] dependChoice = new string[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+        dependBox.Items.AddRange(dependChoice);
+        
+        //initialize empty string outputs
+        outName.Text = "";
+        outRegPay.Text = "";
+        outOtPay.Text = "";
+        outGrossPay.Text = "";
+        outWithTax.Text = "";
+        outHealth.Text = "";
+        outSocSec.Text = "";
+        outNetPay.Text = "";
+        inFName.Text = "";
+        inLName.Text = "";
+        inHrsWorked.Text = "";
+        inPayRate.Text = "";
+
+        //set sizes
+        ClientSize = new Size(660, 806);
+        AutoScaleDimensions = new SizeF(9F, 19F);
+        title.Size = new Size(441, 41);
+        firstName.Size = new Size(85, 19);
+        lastName.Size = new Size(80, 19);
+        hrsWorked.Size = new Size(80, 19); hrsWorked.AutoSize = true;
+        payRate.Size = new Size(80, 19);
+        depend.Size = new Size(80, 19);
+        healthPlan.Size = new Size(80, 19);
+        name.Size = new Size(80, 19);
+        regPay.Size = new Size(80, 19); regPay.AutoSize = true;
+        otPay.Size = new Size(80, 19); otPay.AutoSize = true;
+        grossPay.Size = new Size(80, 19); grossPay.AutoSize = true;
+        withTax.Size = new Size(80, 19); withTax.AutoSize = true;
+        health.Size = new Size(80, 19);
+        socSec.Size = new Size(80, 19); socSec.AutoSize = true;
+        netPay.Size = new Size(80, 19);
+        inFName.Size = new Size(167, 26);
+        inLName.Size = new Size(167, 26);
+        inHrsWorked.Size = new Size(167, 26);
+        inPayRate.Size = new Size(167, 26);
+        dependBox.Size = new Size(90, 27);
+        healthYes.Size = new Size(47, 23);
+        healthYes.AutoSize = true;
+        healthYes.RightToLeft = RightToLeft.Yes;
+        healthNo.Size = new Size(47, 23);
+        healthNo.AutoSize = true;
+        healthNo.RightToLeft = RightToLeft.Yes;
+        computePay.Size = new Size(130, 40);
+        computePay.AutoSize = true;
+        clear.Size = new Size(100, 40);
+        clear.AutoSize = true;
+        exit.Size = new Size(100, 40);
+        exit.AutoSize = true;
+        outName.Size = new Size(80, 19); outName.AutoSize = true;
+        outRegPay.Size = new Size(80, 19);
+        outOtPay.Size = new Size(80, 19);
+        outGrossPay.Size = new Size(80, 19);
+        outWithTax.Size = new Size(80, 19);
+        outHealth.Size = new Size(80, 19);
+        outSocSec.Size = new Size(80, 19);
+        outNetPay.Size = new Size(80, 19);
+
+        //set Location Labels
+        title.Location = new Point(125, 35);
+        firstName.Location = new Point(43, 115);
+        lastName.Location = new Point(370, 115);
+        hrsWorked.Location = new Point(43, 157);
+        payRate.Location = new Point(43, 200);
+        depend.Location = new Point(43, 242);
+        healthPlan.Location = new Point(43, 288);
+        name.Location = new Point(43, 389);
+        regPay.Location = new Point(43, 438);
+        otPay.Location = new Point(43, 482);
+        grossPay.Location = new Point(43, 524);
+        withTax.Location = new Point(43, 563);
+        health.Location = new Point(43, 602);
+        socSec.Location = new Point(43, 645);
+        netPay.Location = new Point(43, 688);
+        computePay.Location = new Point(68, 745);
+        clear.Location = new Point(280, 745);
+        exit.Location = new Point(456, 745);
+        outName.Location = new Point(174, 389);
+        outRegPay.Location = new Point(174, 438);
+        outOtPay.Location = new Point(174, 482);
+        outGrossPay.Location = new Point(174, 524);
+        outWithTax.Location = new Point(174, 563);
+        outHealth.Location = new Point(174, 602);
+        outSocSec.Location = new Point(174, 645);
+        outNetPay.Location = new Point(174, 688);
+
+        //set Location - Text Boxes
+        inFName.Location = new Point(178, 115);
+        inLName.Location = new Point(456, 115);
+        inHrsWorked.Location = new Point(178, 157);
+        inPayRate.Location = new Point(178, 197);
+        dependBox.Location = new Point(178, 239);
+        healthYes.Location = new Point(178, 283);
+        healthNo.Location = new Point(245, 283);
+
+        //set Fonts
+        title.Font = new Font("Goudy Old Style", 23F, FontStyle.Bold);
+        firstName.Font = new Font("Times New Roman", 11.5F);
+        lastName.Font = new Font("Times New Roman", 11.5F);
+        hrsWorked.Font = new Font("Times New Roman", 11.5F);
+        payRate.Font = new Font("Times New Roman", 11.5F);
+        depend.Font = new Font("Times New Roman", 11.5F);
+        healthPlan.Font = new Font("Times New Roman", 11.5F);
+        name.Font = new Font("Times New Roman", 11.5F);
+        regPay.Font = new Font("Times New Roman", 11.5F);
+        otPay.Font = new Font("Times New Roman", 11.5F);
+        grossPay.Font = new Font("Times New Roman", 11.5F);
+        withTax.Font = new Font("Times New Roman", 11.5F);
+        health.Font = new Font("Times New Roman", 11.5F);
+        socSec.Font = new Font("Times New Roman", 11.5F);
+        netPay.Font = new Font("Times New Roman", 11.5F);
+        inFName.Font = new Font("Times New Roman", 11.5F);
+        inLName.Font = new Font("Times New Roman", 11.5F);
+        inPayRate.Font = new Font("Times New Roman", 11.5F);
+        inHrsWorked.Font = new Font("Times New Roman", 11.5F);
+        healthYes.Font = new Font("Times New Roman", 13.5F);
+        healthNo.Font = new Font("Times New Roman", 13.5F);
+        computePay.Font = new Font("Times New Roman", 13.5F);
+        clear.Font = new Font("Times New Roman", 13F);
+        exit.Font = new Font("Times New Roman", 13F);
+
+        //add Controls
+        Controls.Add(title);
+        Controls.Add(firstName);
+        Controls.Add(lastName);
+        Controls.Add(hrsWorked);
+        Controls.Add(payRate);
+        Controls.Add(depend);
+        Controls.Add(healthPlan);
+        Controls.Add(name);
+        Controls.Add(regPay);
+        Controls.Add(otPay);
+        Controls.Add(grossPay);
+        Controls.Add(withTax);
+        Controls.Add(health);
+        Controls.Add(socSec);
+        Controls.Add(netPay);
+        Controls.Add(inFName);
+        Controls.Add(inLName);
+        Controls.Add(inHrsWorked);
+        Controls.Add(inPayRate);
+        Controls.Add(outName);
+        Controls.Add(outRegPay);
+        Controls.Add(outOtPay);
+        Controls.Add(outGrossPay);
+        Controls.Add(outWithTax);
+        Controls.Add(outHealth);
+        Controls.Add(outSocSec);
+        Controls.Add(outNetPay);
+        Controls.Add(dependBox);
+        Controls.Add(healthNo);
+        Controls.Add(healthYes);
+        Controls.Add(computePay);
+        Controls.Add(clear);
+        Controls.Add(exit);
+
+        //registers event handlers
+        exit.Click += new EventHandler(stoprun);
+        clear.Click += new EventHandler(cleartext);
+        computePay.Click += new EventHandler(compute);
+    }
+
+    //exit program
+    protected void stoprun(Object sender, EventArgs events)
+    {
+        Close();
+    }
+
+    //clear ALL input fields
+    protected void cleartext(Object sender, EventArgs events)
+    {
+        clearInputs();
+    }
+
+    //Executes compute functions from PayrollLogic when the "Compute Pay" button is clicked
+    protected void compute(Object sender, EventArgs events)
+    {
+        string nameF, nameL;
+        double payRate, hrsWorked, regPayResult, otPayResult, grossPayResult, socSecResult,
+            withTaxResult, healthResult, netPayResult;
+        int numOfDepend = dependBox.SelectedIndex;
+
+        hrsWorked = Convert.ToDouble(inHrsWorked.Text);
+        payRate = Convert.ToDouble(inPayRate.Text);
+
+        //calls logic computations
+        regPayResult = PayrollLogic.computeRegPay(hrsWorked, payRate);
+        otPayResult = PayrollLogic.computeOtPay(hrsWorked, payRate);
+        grossPayResult = regPayResult + otPayResult;
+        socSecResult = PayrollLogic.computeSocSec(grossPayResult);
+        withTaxResult = PayrollLogic.computeWithTax(numOfDepend, grossPayResult);
+        healthResult = PayrollLogic.computeHealth(numOfDepend);
+        netPayResult = PayrollLogic.computeNetPay(grossPayResult, withTaxResult, healthResult, socSecResult);
+
+        //converts computations to currency format string
+        outRegPay.Text = regPayResult.ToString("C");
+        outOtPay.Text = otPayResult.ToString("C");
+        outGrossPay.Text = grossPayResult.ToString("C");
+        outSocSec.Text = socSecResult.ToString("C");
+        outWithTax.Text = withTaxResult.ToString("C");
+        outNetPay.Text = netPayResult.ToString("C");
+
+        if(healthYes.Checked == true)
+        {
+            outHealth.Text = healthResult.ToString("C");
+        }
+        else
+        {
+            outHealth.Text = "0.00";
+        }
+        nameF = Convert.ToString(inFName.Text);
+        nameL = Convert.ToString(inLName.Text);
+        outName.Text = PayrollLogic.concatenateName(nameF, nameL);
+
+    } //End of compute
+
+    //initailizes inputs/outputs to empty strings
+    void clearInputs()
+    {
+        inFName.Text = "";
+        inLName.Text = "";
+        inHrsWorked.Text = "";
+        inPayRate.Text = "";
+        healthNo.Checked = true;
+        dependBox.ResetText();
+    }
+} //End of payrollUserInterface

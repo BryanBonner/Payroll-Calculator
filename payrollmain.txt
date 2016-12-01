@@ -1,0 +1,27 @@
+﻿//*****************************************************************************************************//
+//File:       payrollmain.cs
+//Name:       Bryan Bonner
+//Email:      bonnerbryan@gmail.com
+//Course:     CPSC 223N
+//Assignment: Assignment 2 - Payroll Calculator
+//Due Date:   February 25, 2015
+//Purpose:    This program takes in information from a user and outputs net pay 
+//****************************************************************************************************//
+using System;
+using System.Windows.Forms;
+
+namespace Payroll
+{
+    static class payrollmain
+    {
+        /// The main entry point for the application
+        [STAThread]
+        static void Main()
+        {
+            System.Console.WriteLine("Welcome to the C# Payroll Application");
+            payrollUserInterface Payrollapp = new payrollUserInterface();
+            Application.Run(Payrollapp);
+            System.Console.WriteLine("Main method will now shutdown.");
+        } 
+    } //end of payrollmain
+}
